@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../SmartHome/.idea/SmartHome.iml" filepath="$PROJECT_DIR$/../SmartHome/.idea/SmartHome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/auto.iml" filepath="$PROJECT_DIR$/.idea/auto.iml" />
+      <module fileurl="file://E:/GitHub（WarrenAN）/vue-admin-template/.idea/vue-admin-template.iml" filepath="E:/GitHub（WarrenAN）/vue-admin-template/.idea/vue-admin-template.iml" />
+      <module fileurl="file://E:/Proj/vue-element-admin-master/.idea/vue-element-admin-master.iml" filepath="E:/Proj/vue-element-admin-master/.idea/vue-element-admin-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../xu-webplatform/.idea/xu-webplatform.iml" filepath="$PROJECT_DIR$/../xu-webplatform/.idea/xu-webplatform.iml" />
+    </modules>
+  </component>
+</project>
