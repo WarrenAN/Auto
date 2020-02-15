@@ -1,5 +1,5 @@
 <template>
-  <div class="h">
+  <div class="home">
     <el-row display="margin-top:10px">
         <el-input v-model="input" placeholder="请输入用户名" style="display:inline-table; width: 30%; float:left"></el-input>
         <el-input v-model="ktext" placeholder="请输入密码（选）" style="display:inline-table; width: 30%; float:left"></el-input>

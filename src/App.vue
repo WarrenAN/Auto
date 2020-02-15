@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+
     <transition name="fade" mode="out-in">
-      <router-view/>
+      <!--路由占位符 -->
+      <router-view></router-view>
     </transition>
   </div>
 </template>
