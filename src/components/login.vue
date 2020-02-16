@@ -58,12 +58,15 @@ export default {
     login() {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        this.$http.get('http://127.0.0.1:8000/api/login?user_name=' + this.loginForm.username + '&user_password=' + this.loginForm.password)
-        .then((response) => {
-          var res = JSON.parse(response.bodyText)
-          console.log(res)
-
-        })
+       const res = await this.$http.post('http://127.0.0.1:8000/api/login?user_name=' + this.loginForm.username + '&user_password=' + this.loginForm.password)
+        console.log(res)
+        if(!res.data.error_num) {
+          this.$message.success(res.data.msg)
+          window.sessionStorage.setItem('token', res.data.token)
+          this.$router.push('/Home')
+        }
+        else
+          this.$message.error(res.data.msg)
       })
     }
   }
