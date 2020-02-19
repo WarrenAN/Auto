@@ -3,7 +3,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="../assets/321084199609056316姚锋.jpg" alt="">
+        <img src="../assets/top.jpg" alt="">
       </div>
       <!-- 登录表单区域 -->
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
@@ -31,8 +31,8 @@ export default {
     return {
       // 这是登录表单的数据绑定对象
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: 'yaofeng',
+        password: 'admin123'
       },
       // 这是表单的验证规则对象
       loginFormRules: {
@@ -58,7 +58,8 @@ export default {
     login() {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-       const res = await this.$http.post('http://127.0.0.1:8000/api/login?user_name=' + this.loginForm.username + '&user_password=' + this.loginForm.password)
+       //const res = await this.$http.post('http://127.0.0.1:8000/api/login?user_name=' + this.loginForm.username + '&user_password=' + this.loginForm.password)
+        const res = await this.$http.post('http://127.0.0.1:8000/api/login',this.loginForm)
         console.log(res)
         if(!res.data.error_num) {
           this.$message.success(res.data.msg)
