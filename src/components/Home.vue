@@ -11,24 +11,26 @@
         <!--页面主体区域-->
         <el-container>
           <!--侧边栏-->
-          <el-aside width="200px">
+          <el-aside :width="isCollapse ? '64px':'200px'">
+            <div class="toggle-button" @click="toggleCollapse"><--</div>
             <!--侧边栏菜单区域-->
-            <el-menu background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409bff"
+                     :unique-opened="true" :collapse="isCollapse" :collapse-transition="false" :router="true">
               <!--一级菜单-->
               <!--   注意花了很多时间     -->
-              <el-submenu :index="item.index" v-for="item in menulist" :key="item">
+              <el-submenu :index="item.index" v-for="item in menulist" :key="item.index">
                 <!--一级菜单模板区域-->
                 <template slot="title">
                   <!--图标-->
-                  <i class="el-icon-location"></i>
+                  <i :class="iconsObj[item.index]"></i>
                   <!--文本-->
                   <span>{{item.first_navigationbar}}</span>
                 </template>
                 <!--二级菜单-->
-                <el-menu-item :index="subitem.SecondIndex" v-for="subitem in item.second_navigationbar">
+                <el-menu-item :index="'/'+subitem.UrlPath" v-for="subitem in item.second_navigationbar" :key="subitem.SecondIndex">
                   <template slot="title">
                     <!--图标-->
-                    <i class="el-icon-location"></i>
+                    <i class="el-icon-menu"></i>
                     <!--文本-->
                     <span>{{subitem.name}}</span>
                   </template>
@@ -38,7 +40,10 @@
             </el-menu>
           </el-aside>
 <!--          右边内容主体-->
-          <el-main>Main</el-main>
+          <el-main>
+<!--            路由占位符-->
+            <router-view></router-view>
+          </el-main>
         </el-container>
     </el-container>
 </template>
@@ -49,7 +54,17 @@
       data(){
           return {
             //左侧菜单数据
-            menulist:[]
+            menulist:[],
+            iconsObj:{
+              '1': 'el-icon-user-solid',
+              '2': 'el-icon-data-analysis',
+              '3': 'el-icon-microphone',
+              '4': 'el-icon-full-screen',
+              '5': 'el-icon-s-home',
+              '6': 'el-icon-guide',
+              '7': 'el-icon-c-scale-to-original'
+            },
+            isCollapse:false
           }
       },
       created() {
@@ -70,6 +85,10 @@
             this.menulist = res.data
           else
             this.$message.error(res.msg)
+        },
+        // 菜单折叠
+        toggleCollapse(){
+            this.isCollapse = !this.isCollapse
         }
 
       }
@@ -95,8 +114,20 @@
 }
   .el-aside{
     background-color: #545c64;
+    .el-menu{
+      border-right: none;
+    }
   }
   .el-main{
     background-color: #EAEDF1;
+  }
+  .toggle-button{
+    background-color: #4a5064;
+    color: #fff;
+    font-size: 10px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    cursor: pointer;
   }
 </style>
