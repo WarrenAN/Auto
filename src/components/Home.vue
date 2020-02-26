@@ -15,7 +15,8 @@
             <div class="toggle-button" @click="toggleCollapse"><--</div>
             <!--侧边栏菜单区域-->
             <el-menu background-color="#545c64" text-color="#fff" active-text-color="#409bff"
-                     :unique-opened="true" :collapse="isCollapse" :collapse-transition="false" :router="true">
+                     :unique-opened="true" :collapse="isCollapse" :collapse-transition="false" :router="true"
+                     :default-active="activePath">
               <!--一级菜单-->
               <!--   注意花了很多时间     -->
               <el-submenu :index="item.index" v-for="item in menulist" :key="item.index">
@@ -27,7 +28,9 @@
                   <span>{{item.first_navigationbar}}</span>
                 </template>
                 <!--二级菜单-->
-                <el-menu-item :index="'/'+subitem.UrlPath" v-for="subitem in item.second_navigationbar" :key="subitem.SecondIndex">
+                <el-menu-item :index="'/'+subitem.UrlPath" v-for="subitem in item.second_navigationbar"
+                              :key="subitem.SecondIndex" @click="saveNavState('/'+subitem.UrlPath)"
+                              >
                   <template slot="title">
                     <!--图标-->
                     <i class="el-icon-menu"></i>
@@ -64,11 +67,15 @@
               '6': 'el-icon-guide',
               '7': 'el-icon-c-scale-to-original'
             },
-            isCollapse:false
+            //是否折叠
+            isCollapse:false,
+            //被激活的链接地址
+            activePath:''
           }
       },
       created() {
-          this.getMenuList()
+          this.getMenuList(),
+            this.activePath = window.sessionStorage.getItem('activePath')
       },
       methods:{
           //退出功能
@@ -89,6 +96,11 @@
         // 菜单折叠
         toggleCollapse(){
             this.isCollapse = !this.isCollapse
+        },
+        //save links
+        saveNavState(activePath){
+            window.sessionStorage.setItem('activePath',activePath)
+          this.activePath = activePath
         }
 
       }
