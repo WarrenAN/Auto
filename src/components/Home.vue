@@ -4,7 +4,7 @@
       <el-header>
         <div>
           <img src="../assets/smart-home.png" alt="">
-          <span>智能家居管理后台</span>
+          <span>智能家居管理</span>
         </div>
         <el-button type="info" @click="logout">退出</el-button>
       </el-header>
@@ -46,6 +46,7 @@
           <el-main>
 <!--            路由占位符-->
             <router-view></router-view>
+<!--            <router-view></router-view>-->
           </el-main>
         </el-container>
     </el-container>
@@ -93,11 +94,11 @@
           else
             this.$message.error(res.msg)
         },
-        // 菜单折叠
+        //  菜单折叠
         toggleCollapse(){
             this.isCollapse = !this.isCollapse
         },
-        //save links
+        //  save links
         saveNavState(activePath){
             window.sessionStorage.setItem('activePath',activePath)
           this.activePath = activePath
